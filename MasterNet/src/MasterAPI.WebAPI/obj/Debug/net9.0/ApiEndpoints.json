@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "MasterWebAPI.Controllers.DemoController",
+    "Method": "GetHello",
+    "RelativePath": "Demo/hello",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
