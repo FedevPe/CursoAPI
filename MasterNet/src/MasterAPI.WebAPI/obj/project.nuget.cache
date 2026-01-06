@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R1UQyEE294M=",
+  "dgSpecHash": "N8qKffgZHvo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrador\\Repositorios\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
+  "projectFilePath": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrador\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.8\\microsoft.aspnetcore.openapi.9.0.8.nupkg.sha512",
     "C:\\Users\\Administrador\\.nuget\\packages\\microsoft.openapi\\1.6.25\\microsoft.openapi.1.6.25.nupkg.sha512",
