@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MasterAPI.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ea35e54c84aa95a97a7776d84b68711c693187a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de6eee6cdd6a63f70b0c3236ca00445212dfe67d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MasterAPI.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MasterAPI.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

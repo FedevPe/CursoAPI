@@ -1,6 +1,5 @@
 using System.Collections.Frozen;
 using System.Security.Claims;
-using Bogus.DataSets;
 using MasterAPI.Domain.Models;
 using MasterAPI.Persistence.Models;
 using Microsoft.AspNetCore.Identity;
