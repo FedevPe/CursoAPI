@@ -1,5 +1,11 @@
 using System.Collections.Frozen;
-using MasterAPI.Domain;
+using System.Security.Claims;
+using Bogus.DataSets;
+using MasterAPI.Domain.Models;
+using MasterAPI.Persistence.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -8,6 +14,7 @@ namespace MasterAPI.Persistence
 {
     public static class SeedDatabase
     {
+        // Método principal para sembrar los datos en la base de datos.
         public static async Task SeedDataAsync(
             MasterAPIDbContext context,
             ILogger? logger,
@@ -18,6 +25,127 @@ namespace MasterAPI.Persistence
             await SeedIntructoresAsync(context, logger, cancellationToken);
             await SeedCursosAsync(context, logger, cancellationToken);
             await SeedCalificacionesAsync(context, logger, cancellationToken);
+        }
+
+        //En este caso no se utiliza con contexto definido (MasterAPIDbContext), es necesario utilizar DbContext
+        //para poder crear instancias de UserManager y RoleManager, a partir de DbContext. Ya que existe dentro de Identity.
+        public static async Task SeedUserAndRolesAsync(
+            DbContext context,
+            ILogger? logger,
+            CancellationToken cancellationToken = default
+        )
+        {
+            try
+            {
+                //Esto me permite los servicios de UserManager para poder gestionar usuarios.
+                //Y crear nuevos usuarios o gestionar los existentes a partir del modelo personalizado UserApp.
+                var userManager = context.GetService<UserManager<UserApp>>();   
+                //Esto me permite los servicios de RoleManager para poder gestionar roles.
+                var roleManager = context.GetService<RoleManager<IdentityRole>>();
+
+                //Si ya existen usuarios, no hago nada.
+                if(userManager.Users.Any()) return;
+
+                //Creo los Ids para los roles ADMIN y CLIENT
+                var adminRoleId = Guid.NewGuid().ToString();
+                var clientRoleId = Guid.NewGuid().ToString();
+
+                //Ahora creo los objetos de roles ADMIN y CLIENT, usando los Ids generados y los nombres definidos en CustomRol.
+                var roleAdmin = new IdentityRole
+                {
+                    Id = adminRoleId,
+                    Name = CustomRol.ADMIN,
+                    NormalizedName = CustomRol.ADMIN.ToUpper()
+                };
+
+                var roleClient = new IdentityRole
+                {
+                    Id = clientRoleId,
+                    Name = CustomRol.CLIENT,
+                    NormalizedName = CustomRol.CLIENT.ToUpper()
+                };
+
+                //Creo los roles en la base de datos si no existen.
+                if(!await roleManager.RoleExistsAsync(CustomRol.ADMIN))
+                {
+                    var result = await roleManager.CreateAsync(roleAdmin);
+                    if(!result.Succeeded)
+                    {
+                        throw new Exception("No se pudo crear el rol ADMIN o este ya existe.");
+                    }
+                }
+                if(!await roleManager.RoleExistsAsync(CustomRol.CLIENT))
+                {
+                    var result = await roleManager.CreateAsync(roleClient);
+                    if(!result.Succeeded)
+                    {
+                        throw new Exception("No se pudo crear el rol CLIENT o este ya existe.");
+                    }
+                }
+
+                //Creo un usuario administrador por defecto, usando UserApp como modelo de usuario, para poder
+                //tener las propiedades personalizadas como NombreCompleto y TituloProfesional.
+                var userAdmin = new UserApp
+                {
+                    UserName = "adminmasterapi",
+                    Email = "adminmasterapi@masterapi.com",
+                    NombreCompleto = "Administrador MasterAPI",
+                    TituloProfesional = "Ingeniero en Sistemas",
+                };
+                
+                //Persisto el usuario administrador en la base de datos con una contraseña.
+                await userManager.CreateAsync(userAdmin, "Password123@");
+
+                //creo un usuario cliente por defecto, usando UserApp como modelo de usuario, para poder
+                //tener las propiedades personalizadas como NombreCompleto y TituloProfesional.
+                var userClient = new UserApp
+                {
+                    UserName = "clientmasterapi",
+                    Email = "clientmasterapi@masterapi.com",
+                    NombreCompleto = "Cliente MasterAPI",
+                    TituloProfesional = "Estudiante",
+                };
+
+                //Persisto el usuario cliente en la base de datos con una contraseña.
+                await userManager.CreateAsync(userClient, "Password123@");
+
+
+                //Asigno el rol ADMIN al usuario administrador.
+                await userManager.AddToRoleAsync(userAdmin, CustomRol.ADMIN);
+                //Asigno el rol CLIENT al usuario cliente.
+                await userManager.AddToRoleAsync(userClient, CustomRol.CLIENT);
+
+
+                //Ahora hay que agregar los claims a los roles, para definir los permisos que cada rol tiene.
+                //De esta forma, cuando un usuario tenga un rol, automáticamente tendrá los claims asociados a ese rol.
+                
+                //Asigno todos los claims de políticas al rol ADMIN
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.CURSO_CREATE));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.CURSO_READ));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.CURSO_UPDATE));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.CURSO_DELETE));
+
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.INSTRUCTOR_CREATE));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.INSTRUCTOR_READ));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.INSTRUCTOR_UPDATE));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.INSTRUCTOR_DELETE));
+                
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.COMENTARIO_CREATE));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.COMENTARIO_READ));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.COMENTARIO_UPDATE));
+                await roleManager.AddClaimAsync(roleAdmin, new Claim(CustomClaims.POLICIES, PolicyMaster.COMENTARIO_DELETE));
+
+                //Asigno solo los claims de lectura al rol CLIENT
+                await roleManager.AddClaimAsync(roleClient, new Claim(CustomClaims.POLICIES, PolicyMaster.CURSO_READ));
+                await roleManager.AddClaimAsync(roleClient, new Claim(CustomClaims.POLICIES, PolicyMaster.INSTRUCTOR_READ));
+                await roleManager.AddClaimAsync(roleClient, new Claim(CustomClaims.POLICIES, PolicyMaster.COMENTARIO_READ));
+
+
+            }
+            catch (Exception ex)
+            {
+                logger?.LogWarning(ex, "Error al cargar usuarios y roles.");
+            }
         }
         public static async Task SeedPreciosAsync(
             MasterAPIDbContext context,

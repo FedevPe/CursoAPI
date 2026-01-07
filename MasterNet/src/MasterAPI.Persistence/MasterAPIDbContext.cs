@@ -1,11 +1,13 @@
-using MasterAPI.Domain;
+using MasterAPI.Domain.Models;
+using MasterAPI.Persistence.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
 
 namespace MasterAPI.Persistence
 {
-    public class MasterAPIDbContext : DbContext
+    public class MasterAPIDbContext : IdentityDbContext<UserApp> 
     {
         public DbSet<Curso>? Cursos {get;set;}
         public DbSet<Instructor>? Instructores {get;set;}
@@ -34,6 +36,7 @@ namespace MasterAPI.Persistence
                 try
                 {
                    await SeedDatabase.SeedDataAsync(masterAPIDbContext, logger, cancelationToken);
+                   await SeedDatabase.SeedUserAndRolesAsync(masterAPIDbContext, logger, cancelationToken);
                 }
                 catch
                 {

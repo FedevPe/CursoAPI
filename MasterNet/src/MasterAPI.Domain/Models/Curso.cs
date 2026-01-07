@@ -1,5 +1,5 @@
 
-namespace MasterAPI.Domain
+namespace MasterAPI.Domain.Models
 {
     public class Curso : BaseEntity
     {
