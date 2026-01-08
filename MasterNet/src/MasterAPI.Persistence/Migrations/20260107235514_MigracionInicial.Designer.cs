@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterAPI.Persistence.Migrations
 {
     [DbContext(typeof(MasterAPIDbContext))]
-    [Migration("20260106234405_SecurityEFCore")]
-    partial class SecurityEFCore
+    [Migration("20260107235514_MigracionInicial")]
+    partial class MigracionInicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

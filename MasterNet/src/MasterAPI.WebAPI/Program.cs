@@ -1,4 +1,5 @@
 using MasterAPI.Application;
+using MasterAPI.Persistence;
 
 internal class Program
 {
@@ -7,6 +8,7 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddApplication();
+        builder.Services.AddPersistence(builder.Configuration);
 
         // Add services to the container.
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
