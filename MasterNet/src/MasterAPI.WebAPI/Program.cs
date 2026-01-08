@@ -1,9 +1,10 @@
 using MasterAPI.Application;
 using MasterAPI.Persistence;
+using MasterAPI.WebAPI.Extensions;
 
-internal class Program
+public class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,8 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        
+        await app.SeedDataAuthentication();
 
         //Permite identificar los controladores en la aplicación y relacionarlos con las rutas HTTP correspondientes.
         app.MapControllers();

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj": {}
+    "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj": {}
   },
   "projects": {
-    "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj": {
+    "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj",
         "projectName": "MasterAPI.Domain",
-        "projectPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj",
-        "packagesPath": "C:\\Users\\Fede\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\MasterAPI.Domain.csproj",
+        "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Fede\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

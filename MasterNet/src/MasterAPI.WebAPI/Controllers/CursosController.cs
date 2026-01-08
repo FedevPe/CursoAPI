@@ -1,7 +1,9 @@
 using MasterAPI.Application.Cursos.CursoCreate;
+using MasterAPI.Application.Cursos.CursoReport.csv;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using static MasterAPI.Application.Cursos.CursoCreate.CursoCreateCommand;
+using static MasterAPI.Application.Cursos.CursoReport.csv.CursoReportCsvQuery;
 
 namespace MasterWebAPI.Controllers
 {
@@ -24,6 +26,15 @@ namespace MasterWebAPI.Controllers
             var command = new CursoCreateCommandRequest(request);
             var resultado = await sender.Send(command, token);
             return Ok(resultado);
+        }
+
+        [HttpGet("reporte")]
+        public async Task<IActionResult> ReporteCsv(CancellationToken token)
+        {
+            var query = new CursoReportQueryRequest();
+            var resultado = await sender.Send(query, token);
+            byte[] excelBytes = resultado.ToArray();
+            return File(excelBytes, "text/csv", "cursos.csv");
         }
     }
 }

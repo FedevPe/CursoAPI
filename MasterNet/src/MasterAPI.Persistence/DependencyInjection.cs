@@ -28,11 +28,11 @@ namespace MasterAPI.Persistence
                 options.UseAsyncSeeding( static async (context, status, cancellationToken) =>
                 {
                     var masterAPIDbContext = (MasterAPIDbContext)context;
-                    var logger = context.GetService<ILogger<MasterAPIDbContext>>();
+                    var logger = context.GetService<ILogger<MasterAPIDbContext>>(); 
                     try
                     {
-                        await SeedDatabase.SeedDataAsync(masterAPIDbContext, logger, cancellationToken);
                         await SeedDatabase.SeedUserAndRolesAsync(masterAPIDbContext, logger, cancellationToken);
+                        await SeedDatabase.SeedDataAsync(masterAPIDbContext, logger, cancellationToken);
                     }
                     catch
                     {
