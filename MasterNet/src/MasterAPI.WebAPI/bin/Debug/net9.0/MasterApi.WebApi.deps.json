@@ -9,6 +9,7 @@
       "MasterApi.WebApi/1.0.0": {
         "dependencies": {
           "MasterAPI.Application": "1.0.0",
+          "MasterAPI.Infraestructure": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "9.0.8",
           "Microsoft.EntityFrameworkCore.Design": "9.0.11",
           "Swashbuckle.AspNetCore.Swagger": "9.0.6",
@@ -37,6 +38,14 @@
           "lib/net6.0/Bogus.dll": {
             "assemblyVersion": "35.6.5.0",
             "fileVersion": "35.6.5.0"
+          }
+        }
+      },
+      "CsvHelper/31.0.3": {
+        "runtime": {
+          "lib/net8.0/CsvHelper.dll": {
+            "assemblyVersion": "31.0.0.0",
+            "fileVersion": "31.0.3.17"
           }
         }
       },
@@ -1003,14 +1012,7 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
-      "System.Text.Json/9.0.11": {
-        "runtime": {
-          "lib/net9.0/System.Text.Json.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.1125.51716"
-          }
-        }
-      },
+      "System.Text.Json/9.0.11": {},
       "System.Threading.Channels/7.0.0": {},
       "MasterAPI.Application/1.0.0": {
         "dependencies": {
@@ -1030,6 +1032,18 @@
       "MasterAPI.Domain/1.0.0": {
         "runtime": {
           "MasterAPI.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "MasterAPI.Infraestructure/1.0.0": {
+        "dependencies": {
+          "CsvHelper": "31.0.3",
+          "MasterAPI.Application": "1.0.0"
+        },
+        "runtime": {
+          "MasterAPI.Infraestructure.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1072,6 +1086,13 @@
       "sha512": "sha512-2FGZn+aAVHjmCgClgmGkTDBVZk0zkLvAKGaxEf5JL6b3i9JbHTE4wnuY4vHCuzlCmJdU6VZjgDfHwmYkQF8VAA==",
       "path": "bogus/35.6.5",
       "hashPath": "bogus.35.6.5.nupkg.sha512"
+    },
+    "CsvHelper/31.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ygck8DR4mG/VDA/LgIVVGpEtXXPDVaaNZNJGrOAJ4pckVw4MbAQ3n/u6YFDv3bwlQhlxTmPhCyk5E4hxe96Crg==",
+      "path": "csvhelper/31.0.3",
+      "hashPath": "csvhelper.31.0.3.nupkg.sha512"
     },
     "FluentValidation/11.11.0": {
       "type": "package",
@@ -1555,6 +1576,11 @@
       "sha512": ""
     },
     "MasterAPI.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MasterAPI.Infraestructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

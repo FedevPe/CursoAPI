@@ -33,6 +33,19 @@
           }
         }
       },
+      "CsvHelper/31.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/CsvHelper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/CsvHelper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "FluentValidation/11.11.0": {
         "type": "package",
         "compile": {
@@ -1477,6 +1490,20 @@
           "bin/placeholder/MasterAPI.Domain.dll": {}
         }
       },
+      "MasterAPI.Infraestructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "CsvHelper": "31.0.3",
+          "MasterAPI.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MasterAPI.Infraestructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MasterAPI.Infraestructure.dll": {}
+        }
+      },
       "MasterAPI.Persistence/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -1537,6 +1564,34 @@
         "lib/netstandard1.3/Bogus.xml",
         "lib/netstandard2.0/Bogus.dll",
         "lib/netstandard2.0/Bogus.xml"
+      ]
+    },
+    "CsvHelper/31.0.3": {
+      "sha512": "ygck8DR4mG/VDA/LgIVVGpEtXXPDVaaNZNJGrOAJ4pckVw4MbAQ3n/u6YFDv3bwlQhlxTmPhCyk5E4hxe96Crg==",
+      "type": "package",
+      "path": "csvhelper/31.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "csvhelper.31.0.3.nupkg.sha512",
+        "csvhelper.nuspec",
+        "lib/net462/CsvHelper.dll",
+        "lib/net462/CsvHelper.xml",
+        "lib/net47/CsvHelper.dll",
+        "lib/net47/CsvHelper.xml",
+        "lib/net48/CsvHelper.dll",
+        "lib/net48/CsvHelper.xml",
+        "lib/net6.0/CsvHelper.dll",
+        "lib/net6.0/CsvHelper.xml",
+        "lib/net7.0/CsvHelper.dll",
+        "lib/net7.0/CsvHelper.xml",
+        "lib/net8.0/CsvHelper.dll",
+        "lib/net8.0/CsvHelper.xml",
+        "lib/netstandard2.0/CsvHelper.dll",
+        "lib/netstandard2.0/CsvHelper.xml",
+        "lib/netstandard2.1/CsvHelper.dll",
+        "lib/netstandard2.1/CsvHelper.xml"
       ]
     },
     "FluentValidation/11.11.0": {
@@ -3968,6 +4023,11 @@
       "path": "../MasterAPI.Domain/MasterAPI.Domain.csproj",
       "msbuildProject": "../MasterAPI.Domain/MasterAPI.Domain.csproj"
     },
+    "MasterAPI.Infraestructure/1.0.0": {
+      "type": "project",
+      "path": "../MasterAPI.Infraestructure/MasterAPI.Infraestructure.csproj",
+      "msbuildProject": "../MasterAPI.Infraestructure/MasterAPI.Infraestructure.csproj"
+    },
     "MasterAPI.Persistence/1.0.0": {
       "type": "project",
       "path": "../MasterAPI.Persistence/MasterAPI.Persistence.csproj",
@@ -3977,6 +4037,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "MasterAPI.Application >= 1.0.0",
+      "MasterAPI.Infraestructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.11",
       "Swashbuckle.AspNetCore.Swagger >= 9.0.6",
@@ -3985,23 +4046,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrador\\.nuget\\packages\\": {},
+    "C:\\Users\\Fede\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
+      "projectUniqueName": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
       "projectName": "MasterApi.WebApi",
-      "projectPath": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
-      "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\obj\\",
+      "projectPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
+      "packagesPath": "C:\\Users\\Fede\\.nuget\\packages\\",
+      "outputPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Fede\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4016,8 +4077,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Application\\MasterAPI.Application.csproj": {
-              "projectPath": "C:\\Users\\Administrador\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Application\\MasterAPI.Application.csproj"
+            "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Application\\MasterAPI.Application.csproj": {
+              "projectPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Application\\MasterAPI.Application.csproj"
+            },
+            "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Infraestructure\\MasterAPI.Infraestructure.csproj": {
+              "projectPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Infraestructure\\MasterAPI.Infraestructure.csproj"
             }
           }
         }
@@ -4032,7 +4096,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -4080,7 +4144,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MasterAPI.Application\MasterAPI.Application.csproj" />
+    <ProjectReference Include="..\MasterAPI.Infraestructure\MasterAPI.Infraestructure.csproj" />
   </ItemGroup>
 
 </Project>

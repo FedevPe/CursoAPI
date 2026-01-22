@@ -13,7 +13,7 @@ namespace MasterAPI.Insfraestructure.Reports
             using var textWriter = new StreamWriter(memoryStream);
             using var csvWriter = new CsvWriter(textWriter, CultureInfo.InvariantCulture);
 
-            csvWriter.WriteRecord(records);
+            csvWriter.WriteRecords(records);
 
             textWriter.Flush();
 

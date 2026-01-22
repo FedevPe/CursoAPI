@@ -1,4 +1,6 @@
 using MasterAPI.Application;
+using MasterAPI.Application.Interfaces;
+using MasterAPI.Insfraestructure.Reports;
 using MasterAPI.Persistence;
 using MasterAPI.WebAPI.Extensions;
 
@@ -10,6 +12,8 @@ public class Program
 
         builder.Services.AddApplication();
         builder.Services.AddPersistence(builder.Configuration);
+
+        builder.Services.AddScoped(typeof(IReportService<>), typeof(ReportService<>));
 
         // Add services to the container.
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
