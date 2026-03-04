@@ -217,7 +217,7 @@ namespace MasterAPI.Persistence
                     if(!Guid.TryParse(idString, out var id))
                         id = Guid.NewGuid();
                     //Luego obtengo el campo Titulo y Descripcion que son cadenas de texto.
-                    var titutlo = item["Titulo"]?.ToString();
+                    var titulo = item["Titulo"]?.ToString();
                     var descripcion = item["Descripcion"]?.ToString();
                     //Para la fecha de publicación, primero obtengo el string y luego intento parsearlo a DateTime.
                     DateTime? fechaPublicacion = null;
@@ -234,7 +234,7 @@ namespace MasterAPI.Persistence
                     var curso =  new Curso
                     {
                         Id = id,
-                        Titulo = titutlo!,
+                        Titulo = titulo!,
                         Descripcion = descripcion!,
                         FechaPublicacion = fechaPublicacion,
                         Calificaciones = new List<Calificacion>(),

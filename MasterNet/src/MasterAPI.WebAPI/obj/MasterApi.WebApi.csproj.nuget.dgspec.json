@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj": {}
+    "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebAPI\\MasterApi.WebApi.csproj": {}
   },
   "projects": {
     "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.Application\\MasterAPI.Application.csproj": {
@@ -205,9 +205,21 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.25.1, )"
+            },
             "CsvHelper": {
               "target": "Package",
               "version": "[31.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.13, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.16.0, )"
             }
           },
           "imports": [
@@ -333,14 +345,14 @@
         }
       }
     },
-    "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj": {
+    "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebAPI\\MasterApi.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
+        "projectUniqueName": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebAPI\\MasterApi.WebApi.csproj",
         "projectName": "MasterApi.WebApi",
-        "projectPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\MasterApi.WebApi.csproj",
+        "projectPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebAPI\\MasterApi.WebApi.csproj",
         "packagesPath": "C:\\Users\\Fede\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebApi\\obj\\",
+        "outputPath": "D:\\Repositorios\\CursoAPI\\MasterNet\\src\\MasterAPI.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,3 +1,5 @@
+using FluentValidation;
+using MasterAPI.Application.Core;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MasterAPI.Application
@@ -11,7 +13,18 @@ namespace MasterAPI.Application
             services.AddMediatR(conf =>
             {
                 conf.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+                conf.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
+
+            services.AddValidatorsFromAssemblies(new[] { typeof(DependencyInjection).Assembly });
+
+            // services.AddFluentValidationAutoValidation();
+            // services.AddValidatorsFromAssemblyContaining<CursoCreateCommand>();
+
+            services.AddAutoMapper(
+                cfg => {},
+                typeof(MappingProfile).Assembly
+            );
 
             return services;
         }

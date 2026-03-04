@@ -2,8 +2,6 @@ using MasterAPI.Domain.Models;
 using MasterAPI.Persistence.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Logging;
 
 namespace MasterAPI.Persistence
 {
@@ -24,26 +22,26 @@ namespace MasterAPI.Persistence
         // va depender de otros proyectos (por ejemplo, API o pruebas unitarias).
         public MasterAPIDbContext(DbContextOptions<MasterAPIDbContext> options) : base(options){}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=masterapi.db")
-            .LogTo(Console.WriteLine, LogLevel.Information)
-            .EnableSensitiveDataLogging()
-            .UseAsyncSeeding(static async (context, status, cancelationToken) =>
-            {
-                var masterAPIDbContext = (MasterAPIDbContext)context;
-                var logger = context.GetService<ILogger<MasterAPIDbContext>>();
-                try
-                {
-                   await SeedDatabase.SeedDataAsync(masterAPIDbContext, logger, cancelationToken);
-                   await SeedDatabase.SeedUserAndRolesAsync(masterAPIDbContext, logger, cancelationToken);
-                }
-                catch
-                {
-                    logger.LogError("Error al ejecutar el seeding asíncrono.");
-                }
-            });
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     optionsBuilder.UseSqlite("Data Source=masterapi.db")
+        //     .LogTo(Console.WriteLine, LogLevel.Information)
+        //     .EnableSensitiveDataLogging()
+        //     .UseAsyncSeeding(static async (context, status, cancelationToken) =>
+        //     {
+        //         var masterAPIDbContext = (MasterAPIDbContext)context;
+        //         var logger = context.GetService<ILogger<MasterAPIDbContext>>();
+        //         try
+        //         {
+        //            await SeedDatabase.SeedDataAsync(masterAPIDbContext, logger, cancelationToken);
+        //            await SeedDatabase.SeedUserAndRolesAsync(masterAPIDbContext, logger, cancelationToken);
+        //         }
+        //         catch
+        //         {
+        //             logger.LogError("Error al ejecutar el seeding asíncrono.");
+        //         }
+        //     });
+        // }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -75,7 +73,6 @@ namespace MasterAPI.Persistence
                 .HasMany( c => c.Imagenes)
                 .WithOne(i => i.Curso)
                 .HasForeignKey(i => i.CursoId)
-                .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Curso>()

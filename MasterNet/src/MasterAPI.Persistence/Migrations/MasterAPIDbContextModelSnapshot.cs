@@ -98,7 +98,10 @@ namespace MasterAPI.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CursoId")
+                    b.Property<Guid?>("CursoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Url")
@@ -405,8 +408,7 @@ namespace MasterAPI.Persistence.Migrations
                     b.HasOne("MasterAPI.Domain.Models.Curso", "Curso")
                         .WithMany("Imagenes")
                         .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Curso");
                 });

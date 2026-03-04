@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterAPI.Persistence.Migrations
 {
     [DbContext(typeof(MasterAPIDbContext))]
-    [Migration("20260107235514_MigracionInicial")]
-    partial class MigracionInicial
+    [Migration("20260224224835_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,7 +101,10 @@ namespace MasterAPI.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CursoId")
+                    b.Property<Guid?>("CursoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Url")
@@ -408,8 +411,7 @@ namespace MasterAPI.Persistence.Migrations
                     b.HasOne("MasterAPI.Domain.Models.Curso", "Curso")
                         .WithMany("Imagenes")
                         .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Curso");
                 });

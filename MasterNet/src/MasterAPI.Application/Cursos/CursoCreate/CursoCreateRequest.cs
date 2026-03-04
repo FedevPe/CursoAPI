@@ -8,6 +8,7 @@ namespace MasterAPI.Application.Cursos.CursoCreate
         public string? Titulo { get; set; }
         public string? Descripcion { get; set; }
         public DateTime? FechaPublicacion { get; set; }
+        //IFormFile es un tipo de dato archivo que se envia desde un formulario web.
         public IFormFile? Foto { get; set; }
         public Guid? InstructorId { get; set; }
         public Guid? PrecioId { get; set; }

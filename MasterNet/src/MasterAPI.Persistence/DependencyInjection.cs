@@ -31,8 +31,8 @@ namespace MasterAPI.Persistence
                     var logger = context.GetService<ILogger<MasterAPIDbContext>>(); 
                     try
                     {
-                        await SeedDatabase.SeedUserAndRolesAsync(masterAPIDbContext, logger, cancellationToken);
                         await SeedDatabase.SeedDataAsync(masterAPIDbContext, logger, cancellationToken);
+                        await SeedDatabase.SeedUserAndRolesAsync(masterAPIDbContext, logger, cancellationToken);
                     }
                     catch
                     {
